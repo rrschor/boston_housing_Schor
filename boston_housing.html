@@ -13218,19 +13218,19 @@ div#notebook {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># TODO: Minimum price of the data</span>
-<span class="n">minimum_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<span class="n">minimum_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># TODO: Maximum price of the data</span>
-<span class="n">maximum_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">maximum_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># TODO: Mean price of the data</span>
-<span class="n">mean_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">mean_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># TODO: Median price of the data</span>
-<span class="n">median_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+<span class="n">median_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># TODO: Standard deviation of prices of the data</span>
-<span class="n">std_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="n">std_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># Show the calculated statistics</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Statistics for Boston housing dataset:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -13261,7 +13261,7 @@ Minimum price: $105000.0
 Maximum price: $1024800.0
 Mean price: $454342.9447852761
 Median price $438900.0
-Standard deviation of prices: $165340.27765266786
+Standard deviation of prices: $165171.13154429477
 </pre>
 </div>
 </div>
@@ -13703,6 +13703,8 @@ Standard deviation of prices: $165340.27765266786
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong> As R2 = 0.923, that means that 92.3 percent of the variance in Y is predictable by X. Therefore, depending on the case it can be accepted as a successfully predictable case.</p>
+<p>This number represents the variance of the data to the regression model, in this case a line. The difference from the Y value predicted to the Y true value is low for a greater R^2 and high for a low R^2.</p>
+<p>As stated above, R2 score of 1 means the dependent variable can be predicted from the independent variable. That would mean 100% fit.</p>
 
 </div>
 </div>
@@ -13780,7 +13782,9 @@ Standard deviation of prices: $165340.27765266786
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong><em>Answer: </em></strong> Randomizing the training set would decrease the chance of the data having a bias and it is necessasry to dived the data set in order to avoid overfitting. If all the data is used in to train the model the user won't be certain that the model haven't learned all the data set.</p>
+<p><strong><em>Answer: </em></strong> Randomizing the training set would decrease the chance of the data having a bias and it is necessary to dived the data set in order to avoid overfitting. If all the data is used in to train the model the user won't be certain that the model haven't learned all the data set.</p>
+<p>If all the data is used to train the model the model would memorize all of it and would fit perfectly, but then it would probably not fit well with new data. That would be overfitting.</p>
+<p>As we will see afterwards in this project it is important to know how the complexity of the model goes comparing the result from the test and the validation part of the data. Then we will know for sure if the model is underfitting, overffiting or if it is just right (Model is neither too simple nor too complex).</p>
 
 </div>
 </div>
@@ -13974,6 +13978,8 @@ Adding more data points will improve the model up to a point, but the value is c
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong><em>Answer: </em></strong> As the depth increase the model does not capture well the Validation set, so the model suffer from high variance. Going to th other side, there is not so much difference between the treining and validation score, but there is a low score. Then the model suffers with a low minimum depth of a high bias.</p>
+<p>The max_depth = 1 show a similar and bad score for both training and validation data set. That leads me to beleave a high bias and low variance, with a poor generalizaiton.</p>
+<p>The max_depth = 10 show a great training model and a bad score for the validation model. That leads me to beleave a low bias and a High variance. With a more complex model, with a high number of features (the depth in the decision tree in this case) leads to the model overfitting the data.</p>
 
 </div>
 </div>
@@ -14023,6 +14029,10 @@ Adding more data points will improve the model up to a point, but the value is c
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong><em>Answer: </em></strong> It is a way to test several parameters in the ML model in order to get the optimum value for our data set. For instances, the user create a dictionary with the hyperparameters that he will evalueate and then it's possible to create e loop and test several of this parameters and compare the model score from each one. Than the best score would have the best hyperparameters for the data and model combination.</p>
+<p>The inputs from the grid search are the Hyperparameters and the list of their values to be tested, the model to be tested (the regression in this case), the method we will use to score the models and the slip of the data set (in this project we used the cross validation random split.</p>
+<p>The output is the hyperparameter with the highest score.</p>
+<p>It is important to set the performance metric, either by a user function or a parameter like f1 already given by Scikit-Learn metric lib.</p>
+<p>The grid are the several testing points to be used to fit the model.</p>
 
 </div>
 </div>
@@ -14046,7 +14056,7 @@ Adding more data points will improve the model up to a point, but the value is c
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong><em>Answer: </em></strong></p>
-<p>The user divide the data and the testing set into random buckets and them we score the the model of each k bucket and the best score is the model chosen.</p>
+<p>First we divide the data to be validated from the rest of the data. Then the user divide the data and the testing set into random buckets and them we score the the model of each k bucket, in relation to the valdated set we slip before, and the best score is the model chosen.</p>
 <p>The Grid search would help get the best hyperparameter for a specific test vs data set. Changing the test may also change the best parameters, and with the combination of the cross validation and grid search the suer may find the best model for the real data, the one that have not been used to train the model.</p>
 
 </div>
@@ -14214,6 +14224,7 @@ Adding more data points will improve the model up to a point, but the value is c
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong> Hint: </strong> The answer comes from the output of the code snipped above.</p>
 <p><strong><em>Answer: </em></strong> Parameter 'max_depth' is 3 for the optimal model.</p>
+<p>This happens to be the same as I decided earlier in question 6.</p>
 
 </div>
 </div>
