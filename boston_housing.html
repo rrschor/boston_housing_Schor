@@ -14056,8 +14056,13 @@ Adding more data points will improve the model up to a point, but the value is c
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong><em>Answer: </em></strong></p>
-<p>First we divide the data to be validated from the rest of the data. Then the user divide the data and the testing set into random buckets and them we score the the model of each k bucket, in relation to the valdated set we slip before, and the best score is the model chosen.</p>
-<p>The Grid search would help get the best hyperparameter for a specific test vs data set. Changing the test may also change the best parameters, and with the combination of the cross validation and grid search the suer may find the best model for the real data, the one that have not been used to train the model.</p>
+<p>First things first, the data to be used to validade is already separated from the training set (this is not due to the k-fold or cv, this is a step prior to that).</p>
+<p>Then the user divide the data into k random buckets. As shown in the image bellow, for an example of k=5.</p>
+<p><img src="grid_search_cross_validation.png"></p>
+<p><a href="https://scikit-learn.org/stable/modules/cross_validation.html#cross-validation">Clickable_visible_hyperlink</a></p>
+<p>For each trained bucked, or fold, the model is trained using k-1 of the fold as training data. The resulting model then is validated to the remaining part (the blue fold in the example above).</p>
+<p>The output is a array with the performance measured reported back by k-fold cross-validation for each loop.</p>
+<p>The Grid search would help get the best hyperparameter for a specific test vs data set. Changing the test may also change the best parameters, and with the combination of the cross validation and grid search the user may find the best model for the real data, the one that have not been used to train the model.</p>
 
 </div>
 </div>
